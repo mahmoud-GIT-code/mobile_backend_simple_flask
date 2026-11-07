@@ -1,6 +1,7 @@
 from flask import Flask
 import json
 import datetime
+import os
 
 app = Flask(__name__)
 
@@ -8,7 +9,7 @@ app = Flask(__name__)
 @app.route('/news.all.get')
 def get_news_all_articles():
 	data=[]
-	with open('news_data.json', 'r') as file:
+	with open(os.path.join(os.path.dirname(__file__), 'news_data.json'), 'r') as file:
 		data = json.load(file)
 	app.logger.debug('_________________Hello '+str(data))
 	return json.dumps(data)
